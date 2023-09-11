@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "141.71.31.196",
+            "port": 54321,
+            "driver": "PostgreSQL",
+            "username": "kairos",
+            "database": "tc_theia_dataset_db",
+            "password": "lolroflxd",
+            "name": "kairos_cadets"
+        }
+    ]
+}

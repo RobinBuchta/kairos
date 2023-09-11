@@ -96,8 +96,8 @@ def test(inference_data,
             srcmsg = str(nodeid2msg[srcnode])
             dstmsg = str(nodeid2msg[dstnode])
             t_var = int(t[i])
-            edgeindex = tensor_find(msg[i][node_embedding_dim:-node_embedding_dim], 1)
-            edge_type = rel2id[edgeindex]
+            edgeindex = tensor_find(msg[i][node_embedding_dim:-node_embedding_dim], 1) # edge_type index 0-6
+            edge_type = rel2id[edgeindex] # edge_type
             loss = each_edge_loss[i]
 
             temp_dic = {}
@@ -114,7 +114,7 @@ def test(inference_data,
         event_count += len(batch.src)
         if t[-1] > start_time + time_window_size:
             # Here is a checkpoint, which records all edge losses in the current time window
-            time_interval = ns_time_to_datetime_US(start_time) + "~" + ns_time_to_datetime_US(t[-1])
+            time_interval = ns_time_to_datetime_US(start_time) + "~" + ns_time_to_datetime_US(t[-1]) # hier wird der name falsch gesetzt - doch nicht: scheint ein sambashare problem zu sein 
 
             end = time.perf_counter()
             time_with_loss[time_interval] = {'loss': loss,
@@ -166,7 +166,7 @@ if __name__ == "__main__":
     # Load data
     graph_4_3, graph_4_4, graph_4_5, graph_4_6, graph_4_7 = load_data()
 
-    # load trained model
+    # load trained model 
     memory, gnn, link_pred, neighbor_loader = torch.load(f"{models_dir}/models.pt",map_location=device)
 
     # Reconstruct the edges in each day

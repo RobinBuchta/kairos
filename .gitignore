@@ -1,3 +1,12 @@
+# ignore artefakts
+DARPA/CADETS_E3/artifact/
+DARPA/THEIA_E3/node2higvec
+DARPA/THEIA_E3/rel2vec
+DARPA/THEIA_E3/train_graph
+
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

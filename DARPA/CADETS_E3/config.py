@@ -5,7 +5,7 @@
 ########################################################
 
 # The directory of the raw logs
-raw_dir = "/the/absolute/path/of/cadets_e3/"
+raw_dir = "/mnt/trustdatastore/datasets/darpa_engagement_3/data/cadets/unpacked/"
 
 # The directory to save all artifacts
 artifact_dir = "./artifact/"
@@ -36,17 +36,18 @@ database = 'tc_cadet_dataset_db'
 # Only config this setting when you have the problem mentioned
 # in the Troubleshooting section in settings/environment-settings.md.
 # Otherwise, set it as None
-host = '/var/run/postgresql/'
+#host = '/var/run/postgresql/'
+host = '141.71.31.196'
 # host = None
 
 # Database user
-user = 'postgres'
+user = 'kairos'
 
 # The password to the database user
-password = 'postgres'
+password = 'lolroflxd'
 
 # The port number for Postgres
-port = '5432'
+port = '54321'
 
 
 ########################################################
@@ -105,7 +106,8 @@ node_embedding_dim = 16
 node_state_dim = 100
 
 # Neighborhood Sampling Size
-neighbor_size = 20
+#neighbor_size = 20
+neighbor_size = 60
 
 # Edge Embedding Dimension
 edge_dim = 100
@@ -121,7 +123,8 @@ time_dim = 100
 ########################################################
 
 # Batch size for training and testing
-BATCH = 1024
+#BATCH = 1024
+BATCH = 256
 
 # Parameters for optimizer
 lr=0.00005

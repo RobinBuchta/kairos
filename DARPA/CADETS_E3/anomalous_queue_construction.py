@@ -56,19 +56,19 @@ def compute_IDF():
     for i in file_l:
         file_list.append(file_path + i)
 
-    file_path = artifact_dir + "graph_4_5/"
-    file_l = os.listdir(file_path)
-    for i in file_l:
-        file_list.append(file_path + i)
+    file_path = artifact_dir + "graph_4_5/" 
+    file_l = os.listdir(file_path) 
+    for i in file_l: 
+        file_list.append(file_path + i) 
 
-    node_set = {}
-    for f_path in tqdm(file_list):
-        f = open(f_path)
-        for line in f:
-            l = line.strip()
-            jdata = eval(l)
-            if jdata['loss'] > 0:
-                if 'netflow' not in str(jdata['srcmsg']):
+    node_set = {} 
+    for f_path in tqdm(file_list):  
+        f = open(f_path)  
+        for line in f: 
+            l = line.strip() 
+            jdata = eval(l) 
+            if jdata['loss'] > 0: 
+                if 'netflow' not in str(jdata['srcmsg']): 
                     if str(jdata['srcmsg']) not in node_set.keys():
                         node_set[str(jdata['srcmsg'])] = {f_path}
                     else:
@@ -116,24 +116,24 @@ def cal_set_rel(s1, s2, node_IDF, tw_list):
                 flag = True
         return flag
 
-    new_s = s1 & s2
-    count = 0
-    for i in new_s:
+    new_s = s1 & s2 # schnittmenge wird berechnet (intersection)
+    count = 0 
+    for i in new_s: 
         if is_include_key_word(i) is True:
-            node_IDF[i] = math.log(len(tw_list) / (1 + len(tw_list)))
+            node_IDF[i] = math.log(len(tw_list) / (1 + len(tw_list))) #wird auf niedrigen wert gesetzt 
 
         if i in node_IDF.keys():
             IDF = node_IDF[i]
         else:
             # Assign a high IDF for those nodes which are neither in training/validation
             # sets nor excluded node list above.
-            IDF = math.log(len(tw_list) / (1))
+            IDF = math.log(len(tw_list) / (1))  
 
-        # Compare the IDF with a rareness threshold α
+        # Compare the IDF with a rareness threshold α 
         if IDF > (math.log(len(tw_list) * 0.9)):
             logger.info(f"node:{i}, IDF:{IDF}")
             count += 1
-    return count
+    return count # anzahl der nodes die in beiden time windows vorkommen anomal sind und nicht blacklistet sind und rare genug 
 
 def anomalous_queue_construction(node_IDF, tw_list, graph_dir_path):
     history_list = []
@@ -166,9 +166,10 @@ def anomalous_queue_construction(node_IDF, tw_list, graph_dir_path):
         added_que_flag = False
         for hq in history_list:
             for his_tw in hq:
-                if cal_set_rel(current_tw['nodeset'], his_tw['nodeset'], node_IDF, tw_list) != 0 and current_tw['name'] != his_tw['name']:
+                #if cal_set_rel(current_tw['nodeset'], his_tw['nodeset'], node_IDF, tw_list) != 0 and current_tw['name'] != his_tw['name']:
+                if current_tw['name'] != his_tw['name']:
                     hq.append(copy.deepcopy(current_tw))
-                    added_que_flag = True
+                    added_que_flag = True # hier wird nur die erste gefundene Quere ergänzt! 
                     break
                 if added_que_flag:
                     break

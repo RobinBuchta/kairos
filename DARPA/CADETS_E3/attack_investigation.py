@@ -35,13 +35,18 @@ def replace_path_name(path_name):
 
 
 # Users should manually put the detected anomalous time windows here
+# attack_list = [
+#     artifact_dir+'/graph_4_6/2018-04-06 11:18:26.126177915~2018-04-06 11:33:35.116170745.txt',
+#     artifact_dir+'/graph_4_6/2018-04-06 11:33:35.116170745~2018-04-06 11:48:42.606135188.txt',
+#     artifact_dir+'/graph_4_6/2018-04-06 11:48:42.606135188~2018-04-06 12:03:50.186115455.txt',
+#     artifact_dir+'/graph_4_6/2018-04-06 12:03:50.186115455~2018-04-06 14:01:32.489584227.txt',
+# ]
 attack_list = [
-    artifact_dir+'/graph_4_6/2018-04-06 11:18:26.126177915~2018-04-06 11:33:35.116170745.txt',
-    artifact_dir+'/graph_4_6/2018-04-06 11:33:35.116170745~2018-04-06 11:48:42.606135188.txt',
-    artifact_dir+'/graph_4_6/2018-04-06 11:48:42.606135188~2018-04-06 12:03:50.186115455.txt',
-    artifact_dir+'/graph_4_6/2018-04-06 12:03:50.186115455~2018-04-06 14:01:32.489584227.txt',
+    artifact_dir+'/graph_4_6/2018-04-06_11:18:26.126177915~2018-04-06_11:33:35.116170745.txt',
+    artifact_dir+'/graph_4_6/2018-04-06_11:33:35.116170745~2018-04-06_11:48:42.606135188.txt',
+    artifact_dir+'/graph_4_6/2018-04-06_11:48:42.606135188~2018-04-06_12:03:50.186115455.txt',
+    artifact_dir+'/graph_4_6/2018-04-06_12:03:50.186115455~2018-04-06_14:01:32.489584227.txt',
 ]
-
 
 original_edges_count = 0
 graphs = []
@@ -98,7 +103,7 @@ for e in gg.edges:
 
 # Define the attack nodes. They are **only be used to plot the colors of attack nodes and edges**.
 # They won't change the detection results.
-def attack_edge_flag(msg):
+def x^x^(msg):
     attack_nodes = [
         '/tmp/vUgefal',
         'vUgefal',

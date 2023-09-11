@@ -101,7 +101,7 @@ def gen_vectorized_graphs(cur, node2higvec, rel2vec, logger):
         logger.info(f'2018-04-{day}, events count: {len(events)}')
         edge_list = []
         for e in events:
-            edge_temp = [int(e[1]), int(e[4]), e[2], e[5]]
+            edge_temp = [int(e[1]), int(e[4]), e[2], e[5]] # e1 = src_index_id, e4= dst_index_id, e2=operation, e5=timestamp_rec
             if e[2] in include_edge_type:
                 edge_list.append(edge_temp)
         logger.info(f'2018-04-{day}, edge list len: {len(edge_list)}')
@@ -125,6 +125,7 @@ def gen_vectorized_graphs(cur, node2higvec, rel2vec, logger):
         dataset.dst = dataset.dst.to(torch.long)
         dataset.msg = dataset.msg.to(torch.float)
         dataset.t = dataset.t.to(torch.long)
+
         torch.save(dataset, graphs_dir + "/graph_4_" + str(day) + ".TemporalData.simple")
 
 if __name__ == "__main__":

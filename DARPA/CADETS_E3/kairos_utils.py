@@ -46,7 +46,8 @@ def ns_time_to_datetime_US(ns):
     """
     tz = pytz.timezone('US/Eastern')
     dt = pytz.datetime.datetime.fromtimestamp(int(ns) // 1000000000, tz)
-    s = dt.strftime('%Y-%m-%d %H:%M:%S')
+    # s = dt.strftime('%Y-%m-%d %H:%M:%S') # format is bad to save on linux
+    s = dt.strftime('%Y-%m-%d_%H:%M:%S') # format is bad to save on linux
     s += '.' + str(int(int(ns) % 1000000000)).zfill(9)
     return s
 
@@ -119,9 +120,9 @@ def gen_nodeid2msg(cur):
     cur.execute(sql)
     rows = cur.fetchall()
     nodeid2msg = {}
-    for i in rows:
-        nodeid2msg[i[0]] = i[-1]
-        nodeid2msg[i[-1]] = {i[1]: i[2]}
+    for i in rows: # hat 4 spalten hash_id, node_type, msg, index_id
+        nodeid2msg[i[0]] = i[-1] # == index_id
+        nodeid2msg[i[-1]] = {i[1]: i[2]} # ==node_type und msg
 
     return nodeid2msg
 

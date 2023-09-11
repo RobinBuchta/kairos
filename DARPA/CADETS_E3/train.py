@@ -34,6 +34,7 @@ def train(train_data,
     neighbor_loader.reset_state()  # Start with an empty graph.
 
     total_loss = 0
+    #logger.info(f"Total number of events: {train_data.num_events}")
     for batch in train_data.seq_batches(batch_size=BATCH):
         optimizer.zero_grad()
 
@@ -73,7 +74,7 @@ def load_train_data():
     graph_4_2 = torch.load(graphs_dir + "/graph_4_2.TemporalData.simple").to(device=device)
     graph_4_3 = torch.load(graphs_dir + "/graph_4_3.TemporalData.simple").to(device=device)
     graph_4_4 = torch.load(graphs_dir + "/graph_4_4.TemporalData.simple").to(device=device)
-    return [graph_4_2, graph_4_3, graph_4_4]
+    return [graph_4_2, graph_4_3, graph_4_4]    
 
 def init_models(node_feat_size):
     memory = TGNMemory(
@@ -105,16 +106,20 @@ def init_models(node_feat_size):
 
 if __name__ == "__main__":
     logger.info("Start logging.")
+    logger.info(f"Batch size: {BATCH}")
+    logger.info(f"Neighbor size: {neighbor_size}")
 
     # Load data for training
     train_data = load_train_data()
-
+    logger.info("Data loaded.")
     # Initialize the models and the optimizer
     node_feat_size = train_data[0].msg.size(-1)
     memory, gnn, link_pred, optimizer, neighbor_loader = init_models(node_feat_size=node_feat_size)
 
+    logger.info("Start training.")
     # train the model
     for epoch in tqdm(range(1, epoch_num+1)):
+        #logger.info(f"Epoch: {epoch:02d}")
         for g in train_data:
             loss = train(
                 train_data=g,

@@ -1,7 +1,7 @@
 from kairos_utils import *
 from config import *
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu') # TODO: change to cuda
 criterion = nn.CrossEntropyLoss()
 
 max_node_num = 268243  # the number of nodes in node2id table +1
