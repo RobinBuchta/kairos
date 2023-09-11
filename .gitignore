@@ -4,8 +4,10 @@ DARPA/THEIA_E3/node2higvec
 DARPA/THEIA_E3/rel2vec
 DARPA/THEIA_E3/train_graph
 
-
-
+#vscode
+.vscode
+._,vscode
+._kairos_cadets.session.sql
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
