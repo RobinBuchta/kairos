@@ -106,8 +106,8 @@ node_embedding_dim = 16
 node_state_dim = 100
 
 # Neighborhood Sampling Size
-#neighbor_size = 20
-neighbor_size = 60
+neighbor_size = 20
+#neighbor_size = 60
 
 # Edge Embedding Dimension
 edge_dim = 100
@@ -123,8 +123,8 @@ time_dim = 100
 ########################################################
 
 # Batch size for training and testing
-#BATCH = 1024
-BATCH = 256
+BATCH = 1024
+#BATCH = 256
 
 # Parameters for optimizer
 lr=0.00005
@@ -144,5 +144,8 @@ time_window_size = 60000000000 * 15
 #
 ########################################################
 
-beta_day6 = 100
-beta_day7 = 100
+# beta_day6 = 100
+# beta_day7 = 100
+
+beta_day6 = 20
+beta_day7 = 20

@@ -27,11 +27,12 @@ def cal_anomaly_loss(loss_list, edge_list):
     node_set = set()
 
     thr = loss_mean + 1.5 * loss_std
+    #thr = 0 # deactive whole detection 
 
     logger.info(f"thr:{thr}")
 
     for i in range(len(loss_list)):
-        if loss_list[i] > thr:
+        if loss_list[i] > thr: # deactivate whole detection
             count += 1
             src_node = edge_list[i][0]
             dst_node = edge_list[i][1]
@@ -117,10 +118,13 @@ def cal_set_rel(s1, s2, node_IDF, tw_list):
         return flag
 
     new_s = s1 & s2 # schnittmenge wird berechnet (intersection)
+    # print(f"count of nodes in s1 {len(s1)}")
+    # print(f"count of nodes in s2 {len(s2)}")
+    # print(f"count of intersection nodes: {len(new_s)}")
     count = 0 
     for i in new_s: 
-        if is_include_key_word(i) is True:
-            node_IDF[i] = math.log(len(tw_list) / (1 + len(tw_list))) #wird auf niedrigen wert gesetzt 
+        #if is_include_key_word(i) is True: # comment for deactivate key word filter
+        #    node_IDF[i] = math.log(len(tw_list) / (1 + len(tw_list))) #wird auf niedrigen wert gesetzt 
 
         if i in node_IDF.keys():
             IDF = node_IDF[i]
@@ -133,6 +137,7 @@ def cal_set_rel(s1, s2, node_IDF, tw_list):
         if IDF > (math.log(len(tw_list) * 0.9)):
             logger.info(f"node:{i}, IDF:{IDF}")
             count += 1
+    #print(f"count is {count}")
     return count # anzahl der nodes die in beiden time windows vorkommen anomal sind und nicht blacklistet sind und rare genug 
 
 def anomalous_queue_construction(node_IDF, tw_list, graph_dir_path):
@@ -166,8 +171,11 @@ def anomalous_queue_construction(node_IDF, tw_list, graph_dir_path):
         added_que_flag = False
         for hq in history_list:
             for his_tw in hq:
-                #if cal_set_rel(current_tw['nodeset'], his_tw['nodeset'], node_IDF, tw_list) != 0 and current_tw['name'] != his_tw['name']:
-                if current_tw['name'] != his_tw['name']:
+                if cal_set_rel(current_tw['nodeset'], his_tw['nodeset'], node_IDF, tw_list) != 0 and current_tw['name'] != his_tw['name']:
+                #if  current_tw['name'] != his_tw['name']:
+                    print(f"current_tw['name'] {current_tw['name']}")
+                    count = cal_set_rel(current_tw['nodeset'], his_tw['nodeset'], node_IDF, tw_list)
+                    print(f"count = {count}")
                     hq.append(copy.deepcopy(current_tw))
                     added_que_flag = True # hier wird nur die erste gefundene Quere ergänzt! 
                     break

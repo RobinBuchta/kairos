@@ -103,7 +103,7 @@ for e in gg.edges:
 
 # Define the attack nodes. They are **only be used to plot the colors of attack nodes and edges**.
 # They won't change the detection results.
-def x^x^(msg):
+def attack_edge_flag(msg):
     attack_nodes = [
         '/tmp/vUgefal',
         'vUgefal',

@@ -4,10 +4,27 @@ DARPA/THEIA_E3/node2higvec
 DARPA/THEIA_E3/rel2vec
 DARPA/THEIA_E3/train_graph
 
+DARPA/THEIA_E3/graph_4_10/
+DARPA/THEIA_E3/graph_4_11/
+DARPA/THEIA_E3/graph_4_12/
+DARPA/THEIA_E3/graph_4_3/
+DARPA/THEIA_E3/graph_4_4/
+DARPA/THEIA_E3/graph_4_5/
+DARPA/THEIA_E3/graph_4_9/
+DARPA/THEIA_E3/graph_visual/
+DARPA/THEIA_E3/models/
+DARPA/THEIA_E3/node_IDF_4_10
+DARPA/THEIA_E3/node_IDF_4_11
+DARPA/THEIA_E3/node_IDF_4_12
+DARPA/THEIA_E3/node_IDF_4_3-5
+
 #vscode
 .vscode
 ._.vscode
 ._kairos_cadets.session.sql
+*._*
+
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
